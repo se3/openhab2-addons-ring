@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -18,7 +18,7 @@ import org.openhab.binding.ring.internal.ApiConstants;
 /**
  * {"profile":{
  * "id":4445516,
- * "email":"wimsenjo@gmail.com",
+ * "email":"",
  * "first_name":null,
  * "last_name":null,
  * "phone_number":null,
@@ -78,23 +78,26 @@ import org.openhab.binding.ring.internal.ApiConstants;
  *
  * @author Wim Vissers - Initial contribution
  */
+
 public class Profile {
     // ADD REFRESH TOKEN
     private JSONObject jsonProfile;
     private JSONObject jsonFeatures;
     private String refreshToken;
+    private String accessToken;
 
     /**
      * Create Profile instance from JSON String.
      *
-     * @param jsonProfile  the JSON profile retrieved from the Ring API.
+     * @param jsonProfile the JSON profile retrieved from the Ring API.
      * @param refreshToken needed for the refresh token so we aren't logging in every time.
-     *                         Needed as a separate parameter because it's not part of the jsonProfile object.
+     *            Needed as a separate parameter because it's not part of the jsonProfile object.
      */
-    public Profile(JSONObject jsonProfile, String refreshToken) {
+    public Profile(JSONObject jsonProfile, String refreshToken, String accessToken) {
         this.jsonProfile = jsonProfile;
         this.jsonFeatures = (JSONObject) jsonProfile.get("features");
         this.refreshToken = refreshToken;
+        this.accessToken = accessToken;
     }
 
     /**
@@ -114,6 +117,10 @@ public class Profile {
      */
     public String getRefreshToken() {
         return refreshToken;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
     }
 
     /**

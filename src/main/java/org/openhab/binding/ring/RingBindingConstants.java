@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -42,4 +42,9 @@ public class RingBindingConstants {
     public final static String CHANNEL_EVENT_DOORBOT_ID = "event#doorbotId";
     public final static String CHANNEL_EVENT_DOORBOT_DESCRIPTION = "event#doorbotDescription";
 
+    public static final String HTTP_METHOD_GET = "GET";
+    public static final String HTTP_METHOD_PUT = "PUT";
+    public static final String HTTP_METHOD_POST = "POST";
+    public static final String HTTP_METHOD_DELETE = "DELETE";
+    public static final String SERVLET_VIDEO_PATH = "/ring/video";
 }

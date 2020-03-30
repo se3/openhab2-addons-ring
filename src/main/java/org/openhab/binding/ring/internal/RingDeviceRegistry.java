@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Wim Vissers - Initial contribution
  */
+
 public class RingDeviceRegistry {
 
     /**
@@ -78,6 +79,7 @@ public class RingDeviceRegistry {
             logger.debug("Ignoring null ringDevice");
         } else {
             if (devices.containsKey(ringDevice.getId())) {
+                // logger.trace("Ring device with duplicate id " + ringDevice.getId() + " ignored");
                 throw new DuplicateIdException("Ring device with duplicate id " + ringDevice.getId() + " ignored");
             } else {
                 ringDevice.setRegistrationStatus(Status.ADDED);
@@ -153,7 +155,7 @@ public class RingDeviceRegistry {
     /**
      * Set the registration status.
      *
-     * @param id     the id of the RingDevice.
+     * @param id the id of the RingDevice.
      * @param status the new registration status.
      */
     public void setStatus(String id, Status status) {

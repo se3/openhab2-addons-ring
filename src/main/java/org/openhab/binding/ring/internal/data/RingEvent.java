@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -12,6 +12,11 @@
  */
 package org.openhab.binding.ring.internal.data;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.json.simple.JSONObject;
 import org.openhab.binding.ring.internal.ApiConstants;
 
@@ -19,6 +24,7 @@ import org.openhab.binding.ring.internal.ApiConstants;
  *
  * @author Wim Vissers - Initial contribution
  */
+
 public class RingEvent {
 
     /**
@@ -74,7 +80,11 @@ public class RingEvent {
      */
     @SuppressWarnings("unchecked")
     public String getCreatedAt() {
-        return jsonObject.getOrDefault(ApiConstants.EVENT_CREATED_AT, "?").toString();
+        String eventTime = jsonObject.getOrDefault(ApiConstants.EVENT_CREATED_AT, "?").toString();
+        ZonedDateTime gmtTime = LocalDateTime
+                .parse(eventTime, DateTimeFormatter.ofPattern("yyy-MM-dd'T'HH:mm:ss.SSS'Z'")).atZone(ZoneId.of("GMT"));
+        LocalDateTime localTime = gmtTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+        return localTime.toString();
     }
 
     /**

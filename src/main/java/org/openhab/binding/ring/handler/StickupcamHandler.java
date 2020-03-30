@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -31,9 +31,10 @@ import org.openhab.binding.ring.internal.errors.IllegalDeviceClassException;
 /**
  * The handler for a Ring Video Stickup Cam.
  *
- * @author Chris Milbert - Stickupcam contribution
+ * @author Chris Milbert - Initial contribution
  *
  */
+
 public class StickupcamHandler extends RingDeviceHandler {
     private Integer lastBattery = -1;
 
@@ -97,7 +98,7 @@ public class StickupcamHandler extends RingDeviceHandler {
             initialize();
         }
 
-        if ((device != null) && (device.getBattery() != lastBattery)) {
+        if ((device != null) && (!device.getBattery().equals(lastBattery))) {
             ChannelUID channelUID = new ChannelUID(thing.getUID(), CHANNEL_STATUS_BATTERY);
             updateState(channelUID, new DecimalType(device.getBattery()));
             lastBattery = device.getBattery();

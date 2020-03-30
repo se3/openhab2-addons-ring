@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -36,6 +36,7 @@ import org.openhab.binding.ring.internal.errors.IllegalDeviceClassException;
  *
  * @author Wim Vissers - Initial contribution
  */
+
 public abstract class RingDeviceHandler extends AbstractRingHandler {
 
     /**
@@ -50,9 +51,9 @@ public abstract class RingDeviceHandler extends AbstractRingHandler {
     /**
      * Link the device, and update the device with the status CONFIGURED.
      *
-     * @param id          the device id
+     * @param id the device id
      * @param deviceClass the expected class
-     * @throws DeviceNotFoundException     when device is not found in the RingDeviceRegistry.
+     * @throws DeviceNotFoundException when device is not found in the RingDeviceRegistry.
      * @throws IllegalDeviceClassException when the regitered device is of the wrong type.
      */
     protected void linkDevice(String id, Class<?> deviceClass)
@@ -75,9 +76,6 @@ public abstract class RingDeviceHandler extends AbstractRingHandler {
         if (command instanceof Number || command instanceof RefreshType || command instanceof IncreaseDecreaseType
                 || command instanceof UpDownType) {
             switch (channelUID.getId()) {
-                case CHANNEL_CONTROL_STATUS:
-                    updateState(channelUID, status);
-                    break;
                 case CHANNEL_CONTROL_ENABLED:
                     updateState(channelUID, enabled);
                     break;
@@ -92,10 +90,6 @@ public abstract class RingDeviceHandler extends AbstractRingHandler {
         } else if (command instanceof OnOffType) {
             OnOffType xcommand = (OnOffType) command;
             switch (channelUID.getId()) {
-                case CHANNEL_CONTROL_STATUS:
-                    status = xcommand;
-                    updateState(channelUID, status);
-                    break;
                 case CHANNEL_CONTROL_ENABLED:
                     if (!enabled.equals(xcommand)) {
                         enabled = xcommand;

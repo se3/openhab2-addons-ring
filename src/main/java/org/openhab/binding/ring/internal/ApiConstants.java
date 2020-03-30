@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2010-2019 Contributors to the openHAB project
+ * Copyright (c) 2010-2020 Contributors to the openHAB project
  *
  * See the NOTICE file(s) distributed with this work for additional
  * information.
@@ -20,6 +20,7 @@ public class ApiConstants {
     public static final int API_VERSION = 11;
 
     // API resources
+    public static final String API_USER_AGENT = "OpenHAB Ring Binding";
     public static final String API_OAUTH_ENDPOINT = "https://oauth.ring.com/oauth/token";
     public static final String API_BASE = "https://api.ring.com";
     public static final String URL_SESSION = API_BASE + "/clients_api/session";
@@ -27,9 +28,9 @@ public class ApiConstants {
     public static final String URL_DEVICES = API_BASE + "/clients_api/ring_devices";
     public static final String URL_HISTORY = API_BASE + "/clients_api/doorbots/history";
     public static final String URL_RECORDING_START = API_BASE + "/clients_api/dings/";
-    public static final String URL_DOORBELLS = API_BASE + "/clients_api/doorbots/";
-    public static final String URL_RECORDING_END = "/recording";
-    public static final String URL_CHIMES = API_BASE + "/clients_api/chimes/";
+    public static final String URL_RECORDING_END = "/share/play?disable_redirect=true";
+    public static final String URL_DOORBELLS = API_BASE + "/clients_api/doorbots";
+    public static final String URL_CHIMES = API_BASE + "/clients_api/chimes";
 
     public static final String HEALTH_DOORBELL_ENDPOINT = URL_DOORBELLS + "/health";
     public static final String HEALTH_CHIMES_ENDPOINT = URL_CHIMES + "/health";
